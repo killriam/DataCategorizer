@@ -73,9 +73,6 @@ namespace Categorizer
             }
         }
 
-        public List<object> GetAllItems()
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

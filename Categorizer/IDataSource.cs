@@ -9,7 +9,7 @@ namespace Categorizer
     interface IDataSource
     {
         void MovetoNextElement();
-        List<object> GetAllItems();
+
         object getCurrentElement();
        
         void setCategoryOfCurrentElement(string newcategory);
