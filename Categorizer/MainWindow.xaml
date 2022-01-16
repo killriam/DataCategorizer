@@ -1,0 +1,152 @@
+﻿<Window x:Class="Categorizer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Categorizer"
+        mc:Ignorable="d"
+        Title="Categorizer" Height="516.794" Width="517.764">
+
+
+
+    <Grid ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MaxWidth="65"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition MaxWidth="65"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition MaxHeight="65"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition MaxHeight="65"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3">
+        <Button Name="btLoadConfiguration" Content="Load Configuration" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="108" Click="BtLoadConfiguration_Click"/>
+        <Button x:Name="btLoadData" Content="Load Data" HorizontalAlignment="Left" Margin="129,10,0,0" VerticalAlignment="Top" Width="108" Click="BtLoadData_Click"/>
+        </WrapPanel> 
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <TextBox Name="tbIndexDisplay"></TextBox>
+            <DataGrid Name="dgElemtCoreValues"  Width="100">
+                <DataGrid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="90"/>
+                        <MatrixTransform Matrix="-1,0,0,1,0,0"/>
+                    </TransformGroup>
+                </DataGrid.LayoutTransform>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                        <Setter Property="LayoutTransform">
+                            <Setter.Value>
+                                <TransformGroup>
+                                    <RotateTransform Angle="-90"/>
+                                    <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                </TransformGroup>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style  TargetType="DataGridCell">
+                        <Setter Property="LayoutTransform">
+                            <Setter.Value>
+                                <TransformGroup>
+                                    <RotateTransform Angle="-90"/>
+                                    <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                </TransformGroup>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+            <DataGrid Name="dgElementDetails" HorizontalAlignment="Left" Height="Auto"  VerticalAlignment="Top" Width="Auto" AutoGenerateColumns="True">
+                <DataGrid.LayoutTransform>
+                    <TransformGroup>
+                        <RotateTransform Angle="90"/>
+                        <MatrixTransform Matrix="-1,0,0,1,0,0"/>
+                    </TransformGroup>
+                </DataGrid.LayoutTransform>
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource {x:Type DataGridColumnHeader}}">
+                        <Setter Property="LayoutTransform">
+                            <Setter.Value>
+                                <TransformGroup>
+                                    <RotateTransform Angle="-90"/>
+                                    <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                </TransformGroup>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <DataGrid.CellStyle>
+                    <Style  TargetType="DataGridCell">
+                        <Setter Property="LayoutTransform">
+                            <Setter.Value>
+                                <TransformGroup>
+                                    <RotateTransform Angle="-90"/>
+                                    <ScaleTransform ScaleX="1" ScaleY="-1" />
+                                </TransformGroup>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+        </StackPanel>
+        
+            <StackPanel Grid.Row="1" Grid.Column="0">
+                <Label Name="lblKeyLabelTopLeft" Content="NumPad 7" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                <Button Name="btCategoryTopLeft" Content="Button" HorizontalAlignment="Center" VerticalAlignment="Top" Width="55" Height="36"/>
+
+            </StackPanel>
+            <StackPanel  Grid.Row="1" Grid.Column="1">
+                <Label Name="lblKeyLabelTopMiddle" Content="NumPad 8" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                <Button Name="btCategoryTopMiddle" Content="Button" HorizontalAlignment="Center" VerticalAlignment="Top" Width="55" Height="36"/>
+
+            </StackPanel>
+        <StackPanel  Grid.Row="1" Grid.Column="2">
+                <Label Name="lblKeyLabelTopRight" Content="NumPad 9" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+                <Button Name="btCategoryTopright" Content="Button" HorizontalAlignment="Center" VerticalAlignment="Top" Width="55" Height="36"/>
+
+            </StackPanel>
+        
+
+            <StackPanel Grid.Row="3" Grid.Column="0">
+
+                <Button Name="btCategoryBottomLeft" Content="Button" HorizontalAlignment="Center" VerticalAlignment="Top" Width="55" Height="36"/>
+                <Label Name="lblKeyLabelBottomLeft" Content="NumPad 1" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+
+            </StackPanel>
+            <StackPanel Grid.Row="3" Grid.Column="1">
+
+                <Button Name="btCategoryBottomMiddle" Content="Button" HorizontalAlignment="Center" VerticalAlignment="Top" Width="55" Height="36"/>
+                <Label Name="lblKeyLabelBottomMiddle" Content="NumPad 2" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+
+            </StackPanel>
+        <StackPanel Grid.Row="3" Grid.Column="2">
+
+                <Button Name="btCategoryBottomright" Content="Button" HorizontalAlignment="Center" VerticalAlignment="Top" Width="55" Height="36"/>
+                <Label Name="lblKeyLabelBottomRight" Content="NumPad 3" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+
+            </StackPanel>
+
+
+
+        <WrapPanel  Grid.Row="2" Grid.Column="2"  VerticalAlignment="Center" HorizontalAlignment="Left">
+
+                <Button Name="btCategoryRightCenter" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="36"/>
+                <Label Name="lblKeyLabelRightCenter" Content="NumPad 6" HorizontalAlignment="Center"  VerticalAlignment="Top"/>
+            </WrapPanel>
+
+
+        <WrapPanel Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                
+                <Button Name="btCategoryLeftCenter" Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="55" Height="36"/>
+            <Label Name="lblKeyLabelLeftCenter" Content="NumPad 4" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+
+            </WrapPanel>
+
+
+
+    </Grid>
+</Window>
