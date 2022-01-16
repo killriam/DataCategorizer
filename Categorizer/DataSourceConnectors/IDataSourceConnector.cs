@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Categorizer
 {
-    interface IDataSource
+    interface IDataSourceConnector
     {
         void MovetoNextElement();
 

@@ -8,7 +8,7 @@ using Microsoft.Office.Interop.Outlook;
 
 namespace Categorizer
 {
-    public class ConnectorOutlookAppointments : IDataSource
+    public class ConnectorOutlookAppointments : IDataSourceConnector
     {
         public List<MetaData<AppointmentItem>> AppointmentsData;
         public int elementIndex = 0;
