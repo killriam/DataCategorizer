@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Office.Interop.Outlook;
 
 
-namespace Categorizer
+namespace Categorizer.DataSourceConnectors
 {
     public class ConnectorOutlookAppointments : IDataSourceConnector
     {
@@ -73,6 +73,10 @@ namespace Categorizer
             }
         }
 
+        public int getCurrentElementIndex()
+        {
+            return elementIndex;
+        }
 
     }
 }

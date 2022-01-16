@@ -8,10 +8,12 @@ namespace Categorizer
 {
     interface IDataSourceConnector
     {
+        
         void MovetoNextElement();
 
         object getCurrentElement();
-       
+
+        int getCurrentElementIndex();
         void setCategoryOfCurrentElement(string newcategory);
     }
 }

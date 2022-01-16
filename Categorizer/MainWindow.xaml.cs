@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Categorizer.DataSourceConnectors;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
@@ -16,7 +17,7 @@ namespace Categorizer
 
         Configuration configData;
 
-        ConnectorOutlookAppointments coa; //temp solution
+        IDataSourceConnector dataconnectorList; //temp solution
 
         List<Key> keys = new List<Key>
         {
@@ -162,38 +163,58 @@ namespace Categorizer
             // MessageBox.Show("SimpleCommand Executed:" + (string)e);
 
             // categorize data
-            coa.setCategoryOfCurrentElement((string)e);
+            dataconnectorList.setCategoryOfCurrentElement((string)e);
             // enhance traininig
 
             // load next data element
-            coa.MovetoNextElement();
+            dataconnectorList.MovetoNextElement();
             displayDataElement();
         }
 
         private void BtLoadData_Click(object sender, RoutedEventArgs e)
         {
+            LoadExcelData();    
+            
+            //LoadOutlookData();
+        }
 
-            DateTime today = DateTime.Today;
-            DateTime startOfCurrentWeek = today.AddMonths(-1).AddDays(-today.Day + 1);
-            DateTime endOfCurrentWeek = startOfCurrentWeek.AddDays(30);
+        private void LoadExcelData()
+        {
+            string filname = @"C:\Users\killr\OneDrive\Dokumente\SWProjects\budgetTracking\Cashglow.xlsx";
+        
             // load data
-            coa = new ConnectorOutlookAppointments(startOfCurrentWeek, endOfCurrentWeek);
-            coa.readAppointmentAsMetaData();
+            dataconnectorList = new ConnectorExcelData(filname);
+            (dataconnectorList as ConnectorExcelData).readDataFromFile();
+
 
             tbIndexDisplay.Text = "0";
 
             // bind data
             displayDataElement();
+        }
 
+        private void LoadOutlookData()
+        {
+            DateTime today = DateTime.Today;
+            DateTime startOfCurrentWeek = today.AddMonths(-1).AddDays(-today.Day + 1);
+            DateTime endOfCurrentWeek = startOfCurrentWeek.AddDays(30);
+            // load data
+            dataconnectorList = new ConnectorOutlookAppointments(startOfCurrentWeek, endOfCurrentWeek);
+            (dataconnectorList as ConnectorOutlookAppointments).readAppointmentAsMetaData();
+
+            tbIndexDisplay.Text = "0";
+
+            // bind data
+            displayDataElement();
         }
 
         private void displayDataElement()
         {
 
-            tbIndexDisplay.Text = coa.elementIndex + "";
-
+            tbIndexDisplay.Text = dataconnectorList.getCurrentElementIndex() + "";
+            
             List<object> tempList = new List<object>();
-            tempList.Add(coa.getCurrentElement());
+            tempList.Add(dataconnectorList.getCurrentElement());
             dgElementDetails.ItemsSource = tempList;
         }
     }

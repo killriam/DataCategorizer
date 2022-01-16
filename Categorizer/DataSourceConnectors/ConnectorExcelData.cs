@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.OleDb;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,19 +13,33 @@ namespace Categorizer.DataSourceConnectors
     public class ConnectorExcelData : IDataSourceConnector
     {
 
-        public List<MetaData<DataRow>> AppointmentsData;
+        
         public int elementIndex = 0;
-
         public String filePath { get; }
+        DataTable dtexcel;
+
+        public ConnectorExcelData(String filepath)
+        {
+            if (File.Exists(filepath))
+            {
+                this.filePath = filepath;
+            }
+            dtexcel = new DataTable();
+        }
+
+
 
         public object getCurrentElement()
         {
-            throw new NotImplementedException();
+            return this.dtexcel.Rows[elementIndex];
         }
 
         public void MovetoNextElement()
         {
-            throw new NotImplementedException();
+            if (elementIndex < dtexcel.Rows.Count)
+            {
+                elementIndex++;
+            }
         }
 
         public void setCategoryOfCurrentElement(string newcategory)
@@ -34,7 +49,7 @@ namespace Categorizer.DataSourceConnectors
 
         public void readDataFromFile()
         {
-            DataTable dtexcel = new DataTable();
+
             bool hasHeaders = false;
             string HDR = hasHeaders ? "Yes" : "No";
             string strConn;
@@ -69,6 +84,11 @@ namespace Categorizer.DataSourceConnectors
             adapter.Fill(ds, "anyNameHere");
 
             DataTable data = ds.Tables["anyNameHere"];*/
+        }
+
+        public int getCurrentElementIndex()
+        {
+            return elementIndex;
         }
     }
 }
